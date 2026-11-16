@@ -22,8 +22,6 @@ public class CategoryController {
         this.categoryService=categoryService;
     }
 
-
-
     @GetMapping
     public ResponseEntity<List<CategoryHomeDTO>> getAll(){
         return new ResponseEntity<>(List.of(), HttpStatus.OK);
