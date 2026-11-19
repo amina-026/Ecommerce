@@ -10,4 +10,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CategoryCreateDTO {
     String name;
+
+    public Object getName() {
+    }
 }

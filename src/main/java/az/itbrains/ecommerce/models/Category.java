@@ -27,11 +27,16 @@ public class Category {
     @Column(length = 100)
      String description;
 
+
+    boolean isFeatured;
+
     @OneToMany(mappedBy ="category")
     List<SubCategory> subCategories = new ArrayList<>();
 
 
+    public void setFeatured(boolean b) {
+    }
 
-
-
+    public void setName(Object name) {
+    }
 }

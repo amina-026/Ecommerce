@@ -1,19 +1,21 @@
 package az.itbrains.ecommerce.controllers;
 
 
+import az.itbrains.ecommerce.dto.category.CategoryCreateDTO;
+import az.itbrains.ecommerce.dto.category.CategoryFeaturedDTO;
 import az.itbrains.ecommerce.dto.category.CategoryHomeDTO;
 import az.itbrains.ecommerce.models.Category;
 import az.itbrains.ecommerce.services.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 @RestController
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -24,8 +26,25 @@ public class CategoryController {
 
     @GetMapping
     public ResponseEntity<List<CategoryHomeDTO>> getAll(){
-        return new ResponseEntity<>(List.of(), HttpStatus.OK);
+        List<CategoryHomeDTO> categories=categoryService.getAllCategories();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
 
     }
+
+    @GetMapping("/featured")
+    public ResponseEntity<List<CategoryFeaturedDTO>> featuredCategories(){
+
+        List<CategoryFeaturedDTO> categories=categoryService.getAllFeaturedCategories();
+
+        return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<CategoryCreateDTO> create(@RequestBody CategoryCreateDTO createDTO){
+        CategoryCreateDTO category=categoryService.createCategory(createDTO);
+
+        return new ResponseEntity<>(category,HttpStatus.CREATED);
+    }
+
 }
 

@@ -20,6 +20,11 @@ public class Product {
      String name;
 
 
+     boolean isFeatured;
+     boolean isHotTrend;
+     boolean isBestSeller;
+
+
      @ManyToOne
      SubCategory subCategory;
 
